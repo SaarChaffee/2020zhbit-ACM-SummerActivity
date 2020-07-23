@@ -60,8 +60,8 @@ int main()
             sum += sticks[i].length;
             sticks[i].vis = false;
         }
-        sort(sticks, sticks + num, cmp);          //将木棒按照长度从长到短的顺序排序
-        for (l = sticks[0].length; l <= sum; l++) //从木棒的最长的那根开始搜索，因为最小的组合也会大于等于最长的那根
+        sort(sticks, sticks + num, cmp);          //将木棒按照长度从长到短的顺序排序，因为最小的整合棒也会大于等于最长的那根
+        for (l = sticks[0].length; l <= sum; l++) //从木棒的最长的那根开始搜索
         {
             if (sum % l != 0) //剪枝：如果不能被整除说明不能组成整数根木棒，搜下一个
                 continue;

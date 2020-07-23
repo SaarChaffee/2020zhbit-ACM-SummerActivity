@@ -1,67 +1,66 @@
-#include <iostream>
-#include <vector>
 #include <queue>
+#include <iostream>
+#include <cstdio>
+#include <cmath>
 #include <cstring>
-
+#include <algorithm>
+#include <stdlib.h>
 using namespace std;
 
-int G[105][105];
-int d[105];
-vector<int> e[105];
+int map[105][105], r[105], topo[105];
+int n, m, k;
 
-void topsort(int n)
+int topoSort()
 {
-    queue<int> q;
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        if (!d[i])
+        k = -1;
+        for (int j = 0; j < n; j++)
         {
-            q.push(i);
-        }
-    }
-    int count = 0;
-    while (!q.empty())
-    {
-        int p = q.front();
-        q.pop();
-        count++;
-        for (int i = 0; i < e[p].size(); i++)
-        {
-            int y = e[p][i];
-            d[y]--;
-            if (!d[y])
+            if (r[j] == 0)
             {
-                q.push(y);
+                topo[cnt++] = j;
+                k = j;
+                break;
             }
         }
+        if (k == -1)
+            break;
+        for (int j = 0; j < n; j++) //
+        {
+            if (map[k][j])
+            {
+                r[j]--;
+            }
+        }
+        r[k] = -1;
     }
-    if (count == n)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
+    return cnt;
 }
 
 int main()
 {
-    int m, n;
-    while (cin >> n >> m)
+    int x, y;
+    while (~scanf("%d%d", &n, &m))
     {
-        if (!n && !m)
+        if (n == 0 || m == 0)
             break;
-        int u, v;
-        for (int i = 0; i < n; i++)
+        memset(r, 0, sizeof r);
+        memset(map, 0, sizeof map);
+        for (int i = 0; i < m; i++)
         {
-            e[i].clear();
+            cin >> x >> y;
+            if (!map[x][y])
+            {
+                map[x][y] = 1;
+                r[y]++;
+            }
         }
-        memset(G, 0, sizeof(G));
-        memset(d, 0, sizeof(d));
-        while (m--)
-        {
-            cin >> u >> v;
-            e[u].push_back(v);
-            d[v]++;
-        }
-        topsort(n);
+        int sum = topoSort();
+        if (k == -1)
+            printf("NO\n");
+        else
+            printf("YES\n");
     }
-    return 0;
 }
