@@ -29,7 +29,7 @@ int dfs(int s, int len, int pos) //s已组成的木棒数目,len已经组成的�
         if (len + sticks[i].length == l)
         {
             sticks[i].vis = true;
-            if (dfs(s + 1, 0, -1)) //已经组成一条，继续判断剩下没组的
+            if (dfs(s + 1, 0, -1)) //已经组成一条整合棒，继续判断剩下没组的
                 return true;
             sticks[i].vis = false;
             return false;
