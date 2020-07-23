@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef struct
+typedef struct _sticks
 {
     int length; //木棒的长度
     bool vis;   //木棒是否被使用过
