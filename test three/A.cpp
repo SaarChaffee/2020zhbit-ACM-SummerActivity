@@ -40,6 +40,7 @@ void topsort(int n)
     else
         cout << "NO" << endl;
 }
+
 int main()
 {
     int m, n;
