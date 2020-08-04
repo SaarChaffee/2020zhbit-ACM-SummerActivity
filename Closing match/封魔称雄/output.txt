@@ -1,0 +1,7 @@
+NormalEnd
+GoodEnd
+GoodEnd
+NormalEnd
+GoodEnd
+BadEnd
+NormalEnd
